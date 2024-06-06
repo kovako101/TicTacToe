@@ -1,9 +1,15 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 #include <iostream>
 
 const int WINDOW_WIDTH = 1920;
 const int WINDOW_HEIGHT = 1080;
+
+void map();
+
+
+
 int main(int argc, char* argv[]) {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -30,7 +36,6 @@ int main(int argc, char* argv[]) {
 
     bool quit = false;
     SDL_Event event;
-
     // Main loop
     while (!quit) {
         // Event polling
@@ -38,21 +43,10 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_QUIT) {
                 quit = true;
             }
-        }
-        SDL_Rect rect;
-        rect.x = 200;
-        rect.y = 150;
-        rect.w = 400;
-        rect.h = 300;
-
-        // Set render draw color (red in this case)
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-
-        SDL_RenderClear(renderer);
-        SDL_SetRenderDrawColor(renderer,255, 192, 203, 255);
-        SDL_RenderDrawRect(renderer, &rect);
-        SDL_RenderFillRect(renderer, &rect);
+            map();
         SDL_RenderPresent(renderer);
+        }
+
     }
 
     // Clean up
@@ -61,4 +55,21 @@ int main(int argc, char* argv[]) {
     SDL_Quit();
 
     return 0;
+}
+
+void map(){
+
+    SDL_Window* window;
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Rect rect;
+        rect.x = 200;
+        rect.y = 150;
+        rect.w = 400;
+        rect.h = 300;
+
+        SDL_SetRenderDrawColor(renderer,255, 192, 203, 255);
+        SDL_RenderDrawRect(renderer, &rect);
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderPresent(renderer);
+
 }
