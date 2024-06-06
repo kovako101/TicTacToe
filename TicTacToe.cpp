@@ -1,9 +1,8 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-const int WINDOW_WIDTH = 1000;
-const int WINDOW_HEIGHT = 1000;
-
+const int WINDOW_WIDTH = 1920;
+const int WINDOW_HEIGHT = 1080;
 int main(int argc, char* argv[]) {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -39,22 +38,18 @@ int main(int argc, char* argv[]) {
                 quit = true;
             }
         }
+        SDL_Rect rect;
+        rect.x = 200;
+        rect.y = 150;
+        rect.w = 400;
+        rect.h = 300;
 
         // Set render draw color (red in this case)
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderDrawPoint(renderer, 500, 500);
-        // Clear the screen
-        SDL_RenderClear(renderer);
-
-        // Draw a dot at position (400, 300)
-        if (SDL_RenderDrawPoint(renderer, 400, 300) != 0) {
-            std::cerr << "Failed to draw point! SDL_Error: " << SDL_GetError() << std::endl;
-        }
-
-        // Update the screen
+        SDL_RenderDrawRect(renderer, &rect);
         SDL_RenderPresent(renderer);
     }
 
