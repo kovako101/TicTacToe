@@ -1,8 +1,8 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
+const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 1000;
 
 int main(int argc, char* argv[]) {
     // Initialize SDL
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
 
         // Set render draw color (red in this case)
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-
+        SDL_RenderDrawPoint(renderer, 500, 500);
         // Clear the screen
         SDL_RenderClear(renderer);
 
